@@ -13,7 +13,7 @@ COPY --from=edge /usr/bin/caddy /usr/local/bin/caddy
 COPY railway/Caddyfile /etc/niubigeo-railway/Caddyfile
 COPY railway/start.sh /usr/local/bin/niubigeo-railway-start
 RUN chmod 755 /usr/local/bin/niubigeo-railway-start \
- && caddy validate --config /etc/niubigeo-railway/Caddyfile --adapter caddyfile
+ && NIUBIGEO_PASSWORD_HASH="$(caddy hash-password --plaintext build-check)" caddy validate --config /etc/niubigeo-railway/Caddyfile --adapter caddyfile
 # Plain defaults live in the image so the Railway template only needs a
 # generated password. Override any of them with a Railway variable.
 ENV PORT=8080 \
