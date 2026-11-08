@@ -2,7 +2,7 @@
 
 NiubiGEO — open-source AI brand visibility and competitor reports. Deploy on Railway with one click.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template?template=PENDING)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fa9HRB)
 
 This repository packages the official [NiubiGEO](https://github.com/Albert-Weasker/niubigeo) image (`ghcr.io/albert-weasker/niubigeo:v0.3.3`, Apache-2.0) for Railway. It is an independent community packaging, not affiliated with or endorsed by the NiubiGEO project.
 
