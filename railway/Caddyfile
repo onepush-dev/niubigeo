@@ -5,13 +5,17 @@
 }
 
 :{$PORT:8080} {
-	# Railway healthcheck only; returns upstream's tiny status JSON.
+	# Railway healthcheck only; returns upstream's tiny {"ok":true}.
 	handle /health {
 		reverse_proxy 127.0.0.1:{$APP_PORT:8787}
 	}
+	# Login page / cookie issuer (railway/gate.mjs).
+	handle /_gate/* {
+		reverse_proxy 127.0.0.1:{$GATE_PORT:8789}
+	}
 	handle {
-		basic_auth {
-			{$NIUBIGEO_USERNAME:admin} {$NIUBIGEO_PASSWORD_HASH}
+		forward_auth 127.0.0.1:{$GATE_PORT:8789} {
+			uri /_gate/verify
 		}
 		reverse_proxy 127.0.0.1:{$APP_PORT:8787} {
 			flush_interval -1
